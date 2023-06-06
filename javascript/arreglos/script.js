@@ -1,6 +1,5 @@
 
 
-document.write("hola mundo")
 
 
 document.write('<h1 style=""> Bienvenido a JS ARREGLLOS</h1>')
@@ -10,31 +9,35 @@ let arr = [];
 
 
 for (let index = 0; index < 10; index++) {
-  //  const element = array[index];
+     
+  var x = Math.round(Math.random()*10);
+  arr.push(x);
     
-  arr.push(index);
-    document.write(index)
-    console.log(index)
 }
+document.write(arr)
+    console.log(arr)
 
+    document.write('<h1 style=""> Separar palabras \n </h1>')
 let palabras = "";
 palabras = prompt("ingrese los elementos a guardar separados por una coma ',' ");
 
 //let contenedor = [];
 
 var contenedor = palabras.split(',');
-//contenedor.push(arreglo)
 
-for (let sum = 1; sum < contenedor.length; sum++) {
+
+for (let sum = 0; sum < contenedor.length; sum++) {
     console.log(contenedor[sum])
     document.write("elemento "+sum+" "+contenedor[sum] + " \n ");
 }
 
 
+document.write('<h1 style=""> Ordenar numeros \n </h1>')
 
-let ordenar =  [10,40,30,20,15,5];
+const  ordenar =  [10,40,30,20,15,5];
 
-
-console.log(ordenar.sort());
-document.write(ordenar.sort());
-
+function comparar(a, b) {
+  return a - b;
+}
+console.log(ordenar.sort(comparar)); 
+document.write(ordenar.sort(comparar));
