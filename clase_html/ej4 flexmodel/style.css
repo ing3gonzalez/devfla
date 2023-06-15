@@ -1,45 +1,41 @@
 body {
     background-color: gray;
+    padding: 10px;
 }
 
 div {
 
-    margin: 10px;
+   
     background-color: aqua;
-    display: flex;
-
+    border-color: black;
+    border-style: dotted;
 }
 
 div.chicoazul {
     height: 100px;
+    margin: 10px;
 }
 
 div.grandeazul {
     height: 150px;
+    margin: 10px;
 }
 
 div.container>div {
     height: 150px;
     width: 50%;
-    padding: 10px;
-    margin: 10px;
-
-}
+    
+    }
 
 
-
-/*
 div.container.medianoazulmargin-derecho {
-
-    width: 50%;
-    padding: 10px;
-    margin-right: 20px;
+    float: right;
+    background-color: antiquewhite;
+    
 }
 
 div.container.medianoazul {
-    width: 50%;
-    padding: 10px;
-    margin-right: 20px;
+    float: left;
+    width: 40px;
 }
 
-*/
