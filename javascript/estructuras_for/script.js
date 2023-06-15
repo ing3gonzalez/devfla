@@ -53,6 +53,3 @@ if (typeof (arreglo[z])=== 'number')
 }
 */
 }
-
-
-
