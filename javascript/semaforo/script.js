@@ -34,8 +34,8 @@ imgArray[3] = new Image();
 imgArray[3].src = 'img/rojo.png';
 imgArray[3].id = 'mainImage';
 
-let timerId = setInterval(() => nextImage(), 1000);
-setTimeout(() => { clearInterval(timerId); nextImage(); }, 4000);
+let timerId = setInterval(  nextImage, 1000);
+//setTimeout(() => { clearInterval(timerId); nextImage(); }, 4000);
 
 
 function nextImage(){
@@ -54,18 +54,27 @@ function nextImage(){
 }
 
 
-var img = document.getElementById("ciclo");
-  for(var i = 0; i < imgArray.length;i++){
-     if(imgArray[i].src == img.src){
-          if(i === imgArray.length){
-              document.getElementById("ciclo").src = imgArray[0].src;
-              break;
-          }
-         document.getElementById("ciclo").src = imgArray[i+1].src;
-        break;
-     }
 
-  }
-  
 //https://www.delftstack.com/es/howto/javascript/javascript-array-of-images/
 //https://keepcoding.io/blog/metodos-settimeout-y-setinterval-en-javascript/
+/*
+unction imprimeHola() {
+
+            console.log('Hola'); 
+
+        }
+
+        
+
+        function detente(intervalo) {
+
+            clearInterval(intervalo);
+
+            console.log('Listo!');
+
+        }
+
+                var intervalo = setInterval(imprimeHola(),1000); 
+
+        setTimeout(detener(intervalo),5000); 
+        */
