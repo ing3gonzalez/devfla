@@ -1,5 +1,5 @@
 .container1 {
-    width: 100%;
+    width: 80%;
     display: flex;
     height: 100px;
 
@@ -7,7 +7,7 @@
 }
 
 .container2 {
-    width: 100%;
+    width: 80%;
     display: flex;
     height: 40px;
 
@@ -15,7 +15,7 @@
 }
 
 .container3 {
-    width: 100%;
+    width: 80%;
     display: flex;
     height: 80px;
 
