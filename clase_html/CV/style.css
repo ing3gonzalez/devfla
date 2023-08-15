@@ -23,14 +23,6 @@ aside
 color: antiquewhite;
 }
 
-main
-{
-	width: 70%;
-	
-	background-color: rgb(141, 36, 36);
-
-}
-
 .imagen img
 {
 border-radius: 50%;
@@ -44,10 +36,6 @@ margin-bottom: 20px;
 	display: flex;
 }
 
-.margin-title
-{
-	margin: 30px 0;
-}
 .material-symbols-outlined
 {
 	margin-right: 5px;
@@ -58,17 +46,92 @@ margin-bottom: 20px;
 margin-bottom: 10px;
 
 }
+.habilidades div
+{
+margin-bottom: 10px;
+
+}
+.certificaciones div
+{
+margin-bottom: 10px;
+
+}
+.title-h
+{
+	margin-bottom:  10px;
+}
 
 .habilidades span
 {
 	margin-right:  10px;
+	margin-bottom:  10px;
 }
 .margin-icon
 {
 	margin-right:  10px;
 }
+.margin-title
+{
+	margin: 50px 0 20px 0;
+}
 
+.certificaciones span
+{
+	margin-right:  10px;
+	margin-bottom:  10px;
+}
+
+.redes a
+{
+	color: antiquewhite;
+}
 
 
 /*https://fonts.google.com/icons?selected=Material+Symbols+Outlined:travel_explore:FILL@0;wght@400;GRAD@0;opsz@48&icon.query=web
 */
+
+/*BLOQUE DERECHO */
+main
+{
+	width: 70%;
+	
+	background-color: rgb(231, 220, 220);
+		padding: 5%;
+}
+h1
+{
+
+font-size: 50px;
+color: rgb(30, 34, 77);
+
+}
+hr
+{
+width: 40%;
+background-color: darkgreen;
+border-style: none;
+height: 2px;
+margin: 2% 0px;
+
+}
+
+h2, section h3
+{
+	
+font-size: 20px;
+color: rgb(64, 76, 206);
+
+}
+.date
+{
+	color: rgb(58, 58, 53);
+	font-weight: bold;
+}
+h4
+{
+	margin-bottom: 1%;
+}
+ul
+{
+	margin-left: 5%;
+}
