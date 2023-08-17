@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de ventas</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="datos.js"></script>
+</head>
+<body>
+
+ 
+
+<h3>Seleccione el vendedor</h3>
+
+  <select name="vendedores" id="vendor">
+    <option value="Juana">Juana</option>
+    <option value="Pedro">Pedro</option>
+  </select>
+  <br>
+  Ingrese la cantidad de productos vendidos
+  <br>Aqua
+  <input type="number"  id="c_aqua" ></input>
+  <br>Emocion
+  <input type="number"  id="c_emocion"> </input>
+  <br>Alegria
+  <input type="number"  id="c_alegria"></input>
+  <br>Frescura
+  <input type="number"  id="c_frescura"> </input>
+  <br>
+  <hr>
+  <input type="button" value="Agregar" onclick="agregarelemento();">  </input>
+  <input type="button" value="Mostrar_ventas" onclick="mostrarelementoventas();"> </input>
+
+  
+  <div id ="resultado"></div>
+
+  <div id ="resultadoventas"></div>
+
+
+</body>
+</html>
