@@ -10,11 +10,10 @@
 </head>
 <body>
     
-    <script src="script.js">
-    </script>
+    
    
 
-   <div>
+   <!-- <div>
 
 <input id ="consigna" class="input" placeholder="Cantidad a depositar">
 <button id = "boton_deposita"class="button is-dark">Depositar</button>
@@ -23,9 +22,22 @@
 
 
    </div>
-    
+     -->
 
-
-    
+     <div class="container">
+        <h1>Cajero Automático</h1>
+        <label for="accountSelect">Selecciona una cuenta:</label>
+        <select id="accountSelect">
+            <option value="persona1">Persona 1</option>
+            <option value="persona2">Persona 2</option>
+            <option value="persona3">Persona 3</option>
+        </select>
+        <button id="consultar">Consultar Saldo</button>
+        <button id="retirar">Retirar Dinero</button>
+        <button id="consignar">Consignar Dinero</button>
+        <div id="output"></div>
+    </div>
+    <script src="script.js">
+    </script>
 </body>
 </html>
