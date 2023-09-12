@@ -2,12 +2,11 @@ const pgp = require('pg-promise')();
 
 const dbConfig = {
   user: 'postgres',
-  password: 'postgres',
-  host: '127.0.0.1',
+  password: '12345',
+  host: 'localhost',
   port: '5432',
-  database: 'backendbd',
+  database: 'tinder',
 };
 
 const db = pgp(dbConfig);
-
 module.exports = db;

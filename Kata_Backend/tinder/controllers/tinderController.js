@@ -18,7 +18,7 @@ router.get('/obtener', async (req, res) => {
     const talentos = await talentoModel.obtenerTalentos();
     res.status(200).json(talentos);
   } catch (error) {
-    res.status(500).json({ error: 'Error al obtener los talentos' });
+    res.status(500).json({ error: 'Error al obtener los talentos 1' });
   }
 });
 
