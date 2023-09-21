@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talentos</title>
+</head>
+<body>
+    <h1>Listado de Talentos</h1>
+
+    <!-- Botón para cargar talentos -->
+    <button id="cargarTalentos">Cargar Talentos</button>
+
+    <!-- Contenedor para mostrar los talentos -->
+    <div id="talentos"></div>
+
+   
+    <script>
+        // Función para cargar los talentos desde la API
+        async function cargarTalentos() {
+            try {
+               // const response = await fetch('/tinder/obtener'); // Ruta a la API, muestra error porque live server ejecuta desde el puerto 5500?
+                 const response = await fetch('http://localhost:5500/tinder/obtener', {
+	       // 'mode': 'cors',
+	        //'headers': {  	'Access-Control-Allow-Origin': '*'        	}
+        }); // Ruta a la API
+                const talentos = await response.json();
+
+                // Mostrar los talentos en el contenedor
+                const talentosContainer = document.getElementById('talentos');
+                talentosContainer.innerHTML = '';
+
+                talentos.forEach(talento => {
+                    const talentoDiv = document.createElement('div');
+                    talentoDiv.innerHTML = `
+                        <h3>${talento.nombre}</h3>
+                        <p>Ciudad: ${talento.ciudad}</p>
+                        <p>País: ${talento.pais}</p>
+                        <p>Correo: ${talento.correo}</p>
+                        <p>Teléfono: ${talento.telefono}</p>
+                    `;
+                    talentosContainer.appendChild(talentoDiv);
+                });
+            } catch (error) {
+                console.error('Error al cargar talentos:', error);
+            }
+        }
+
+        // Agregar un evento click al botón para cargar talentos
+        const cargarTalentosButton = document.getElementById('cargarTalentos');
+        cargarTalentosButton.addEventListener('click', cargarTalentos);
+
+    
+    </script>
+
+<a href="index.html">Inicio </a>
+</body>
+</html>
