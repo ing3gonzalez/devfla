@@ -17,7 +17,8 @@ app.use(bodyParser.json());
 const tinderRoutes = require('./controllers/tinderController');
 
 // Usar las rutas
-app.use('/tinder', tinderRoutes);
+app.use('/tinder', tinderRoutes); 
+
 
 // Habilitar el servicio de archivos estáticos
 app.use(express.static('tinder'));
