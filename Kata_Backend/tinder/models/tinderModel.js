@@ -27,7 +27,7 @@ function eliminarTalento(id) {
 
 function crearEmpresa(datosempresa) {
   //return db.one('INSERT INTO public.talento (nombre, ciudad, pais, correo, telefono) VALUES ($1, $2, $3, $4, $5) RETURNING id', [datos.nombre, datos.ciudad, datos.pais, datos.correo, datos.telefono]);
-  return db.one('INSERT INTO public.empresa(	 nombre, ciudad, pais, contacto, correo, telefono) VALUES ($1, $2, $3, $4, $5, $6)  RETURNING id_empresa', [datosempresa.nombre, datosempresa.ciudad, datosempresa.pais, datosempresa.contacto, datosempresa.correo,datosempresa.telefono]);
+  return db.one('INSERT INTO public.empresa(	 nit,nombre, ciudad, pais, contacto, correo, telefono) VALUES ($1, $2, $3, $4, $5, $6, $7)  RETURNING id_empresa', [datosempresa.nit,datosempresa.nombre, datosempresa.ciudad, datosempresa.pais, datosempresa.contacto, datosempresa.correo,datosempresa.telefono]);
 
 }
 
@@ -41,7 +41,7 @@ function actualizarEmpresa(id, actempresa) {
 
 function eliminarEmpresa(id) {
   console.log("error consola",id);
-  return db.none('DELETE FROM public.empresa WHERE id_empresa = $1 ', [id]);
+  return db.none('DELETE FROM public.empresa WHERE nit = $1 ', [id]);
   
 }
 
