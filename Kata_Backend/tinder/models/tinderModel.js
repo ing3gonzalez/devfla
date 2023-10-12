@@ -4,7 +4,7 @@ const db = require('../database');
 
 function crearTalento(datos) {
   //return db.one('INSERT INTO public.talento (nombre, ciudad, pais, correo, telefono) VALUES ($1, $2, $3, $4, $5) RETURNING id', [datos.nombre, datos.ciudad, datos.pais, datos.correo, datos.telefono]);
-  return db.one('INSERT INTO public.talento (id_talento,nombre, ciudad, pais, correo, telefono,valor_hora) VALUES ($1, $2, $3, $4, $5,$6,$7)  RETURNING id_talento', [datos.id_talento,datos.nombre, datos.ciudad, datos.pais, datos.correo, datos.telefono, datos.valor_hora]);
+  return db.one('INSERT INTO public.talento (identificacion,nombre, ciudad, pais, correo, telefono,valor_hora) VALUES ($1, $2, $3, $4, $5,$6,$7)  RETURNING id_talento', [datos.identificacion,datos.nombre, datos.ciudad, datos.pais, datos.correo, datos.telefono, datos.valor_hora]);
 
 }
 
@@ -13,12 +13,12 @@ function obtenerTalentos() {
 }
 
 function actualizarTalento(id, nuevosDatos) {
-  return db.one('UPDATE public.talento SET nombre = $1, ciudad = $2, pais = $3, correo = $4, telefono = $5, valor_hora = $6 WHERE id_talento = $7  RETURNING id_talento' , [nuevosDatos.nombre, nuevosDatos.ciudad, nuevosDatos.pais, nuevosDatos.correo, nuevosDatos.telefono,nuevosDatos.valor_hora, id]);
+  return db.one('UPDATE public.talento SET nombre = $1, ciudad = $2, pais = $3, correo = $4, telefono = $5, valor_hora = $6 WHERE identificacion = $7  RETURNING id_talento' , [nuevosDatos.nombre, nuevosDatos.ciudad, nuevosDatos.pais, nuevosDatos.correo, nuevosDatos.telefono,nuevosDatos.valor_hora, id]);
 }
 
 function eliminarTalento(id) {
   console.log("error consola",id);
-  return db.none('DELETE FROM public.talento WHERE id_talento = $1 ', [id]);
+  return db.none('DELETE FROM public.talento WHERE identificacion = $1 ', [id]);
   
 }
 
@@ -49,7 +49,7 @@ function eliminarEmpresa(id) {
 
 function crearHabilidad(datoshabilidad) {
   //return db.one('INSERT INTO public.talento (nombre, ciudad, pais, correo, telefono) VALUES ($1, $2, $3, $4, $5) RETURNING id', [datos.nombre, datos.ciudad, datos.pais, datos.correo, datos.telefono]);
-  return db.one('INSERT INTO public.habilidades(	 id_talento, id_area, id_categoria, descripcion) VALUES ($1, $2, $3, $4)  RETURNING id_habilidad', [ datoshabilidad.id_talento, datoshabilidad.id_area, datoshabilidad.id_categoria, datoshabilidad.descripcion]);
+  return db.one('INSERT INTO public.habilidades(	  id_area, id_categoria, descripcion) VALUES ($1, $2, $3, $4)  RETURNING id_habilidad', [  datoshabilidad.id_area, datoshabilidad.id_categoria, datoshabilidad.descripcion]);
 
 }
 
