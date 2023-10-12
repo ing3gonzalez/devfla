@@ -82,7 +82,7 @@ router.delete('/empresa/eliminar/:id', async (req, res) => {
   const id = req.params.id;
   try {
     await talentoModel.eliminarEmpresa(id);
-    res.status(200).json({ mensaje: 'Empresa eliminado correctamente' });
+    res.status(202).json({ mensaje: 'Empresa eliminado correctamente' });
   } catch (error) {
     res.status(500).json({ error: 'Error al eliminar la empresa',error });
   }
@@ -144,7 +144,7 @@ router.delete('/habilidad/eliminar/:id', async (req, res) => {
   const id = req.params.id;
   try {
     await talentoModel.eliminarHabilidad(id);
-    res.status(200).json({ mensaje: 'Habilidad eliminada correctamente' });
+    res.status(202).json({ mensaje: 'Habilidad eliminada correctamente' });
   } catch (error) {
     res.status(500).json({ error: 'Error al eliminar la habilidad',error });
   }

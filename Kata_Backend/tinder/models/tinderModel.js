@@ -36,7 +36,7 @@ function obtenerEmpresa() {
 }
 
 function actualizarEmpresa(id, actempresa) {
-  return db.one('UPDATE public.empresa SET nombre = $1, ciudad = $2, pais = $3, contacto = $4, correo = $5 ,telefono = $6 WHERE id_empresa = $7  RETURNING id_empresa' , [actempresa.nombre, actempresa.ciudad, actempresa.pais, actempresa.contacto, actempresa.correo,actempresa.telefono,id]);
+  return db.one('UPDATE public.empresa SET nombre = $1, ciudad = $2, pais = $3, contacto = $4, correo = $5 ,telefono = $6 WHERE nit = $7  RETURNING id_empresa' , [actempresa.nombre, actempresa.ciudad, actempresa.pais, actempresa.contacto, actempresa.correo,actempresa.telefono,id]);
 }
 
 function eliminarEmpresa(id) {
@@ -48,8 +48,8 @@ function eliminarEmpresa(id) {
 //Habilidades
 
 function crearHabilidad(datoshabilidad) {
-  //return db.one('INSERT INTO public.talento (nombre, ciudad, pais, correo, telefono) VALUES ($1, $2, $3, $4, $5) RETURNING id', [datos.nombre, datos.ciudad, datos.pais, datos.correo, datos.telefono]);
-  return db.one('INSERT INTO public.habilidades(	  id_area, id_categoria, descripcion) VALUES ($1, $2, $3, $4)  RETURNING id_habilidad', [  datoshabilidad.id_area, datoshabilidad.id_categoria, datoshabilidad.descripcion]);
+  
+  return db.one('INSERT INTO public.habilidades(id_area, id_categoria,id_talento, descripcion) VALUES ($1, $2, $3, $4)  RETURNING id_habilidad', [  datoshabilidad.id_area,  datoshabilidad.id_categoria,datoshabilidad.id_talento, datoshabilidad.descripcion]);
 
 }
 
