@@ -21,12 +21,12 @@ app.use('/tinder', tinderRoutes);
 
 
 // Habilitar el servicio de archivos estáticos
-app.use(express.static('tinder'));
+//app.use(express.static('tinder'));
 
-// Esta línea servirá el archivo index.html desde el directorio 'public'
+/* // Esta línea servirá el archivo index.html desde el directorio 'public'
 app.get('/', (req, res) => {
   res.sendFile('tinder/index.html');
-});
+}); */
 
 
 
