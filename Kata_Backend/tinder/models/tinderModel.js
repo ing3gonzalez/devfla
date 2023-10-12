@@ -4,7 +4,7 @@ const db = require('../database');
 
 function crearTalento(datos) {
   //return db.one('INSERT INTO public.talento (nombre, ciudad, pais, correo, telefono) VALUES ($1, $2, $3, $4, $5) RETURNING id', [datos.nombre, datos.ciudad, datos.pais, datos.correo, datos.telefono]);
-  return db.one('INSERT INTO public.talento (nombre, ciudad, pais, correo, telefono,valor_hora) VALUES ($1, $2, $3, $4, $5,$6)  ', [datos.nombre, datos.ciudad, datos.pais, datos.correo, datos.telefono, datos.valor_hora]);
+  return db.one('INSERT INTO public.talento (nombre, ciudad, pais, correo, telefono,valor_hora) VALUES ($1, $2, $3, $4, $5,$6)  RETURNING id_talento', [datos.nombre, datos.ciudad, datos.pais, datos.correo, datos.telefono, datos.valor_hora]);
 
 }
 
