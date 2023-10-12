@@ -38,7 +38,7 @@ router.delete('/talento/eliminar/:id', async (req, res) => {
   const id = req.params.id;
   try {
     await talentoModel.eliminarTalento(id);
-    res.status(204).json({ mensaje: 'Talento eliminado correctamente' });
+    res.status(202).json({ mensaje: 'Talento eliminado correctamente' });
   } catch (error) {
     res.status(500).json({ error: 'Error al eliminar el talento',error });
   }
