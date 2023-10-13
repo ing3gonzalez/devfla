@@ -24,7 +24,7 @@ class Talentos extends React.Component {
     state = {
         data: [],
         modalInsertar: false,
-        //   modalEliminar: false,
+        modalEliminar: false,
         form: {
 
             identificacion: '',
