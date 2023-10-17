@@ -41,18 +41,5 @@ function App() {
     </React.StrictMode>,
   )
 }
-/*
-  return (
-    <>
-<div>
-        <a href={Empresas} >Empresas</a>
-               
-        </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}*/
 
 export default App
