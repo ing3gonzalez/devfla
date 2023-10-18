@@ -151,7 +151,7 @@ class Talentos extends React.Component {
 
     seleccionarHabilidadTalento = (talento) => {
         this.setState({
-            tipoModal: 'insertar',
+            tipoModal: 'actualizar',
             form_hab: {
                 id_talento: talento.id_talento,
                 categoria: talento.categoria,
@@ -173,7 +173,7 @@ class Talentos extends React.Component {
                 [e.target.name]: e.target.value
             },
             form_hab: {
-                ...this.state.form,
+                ...this.state_hab.form_hab,
                 [e.target.name]: e.target.value
             }
         });
@@ -239,7 +239,7 @@ class Talentos extends React.Component {
                                                     {"   "}
                                                     <button className="btn btn-danger" onClick={() => { this.seleccionarTalento(talento); this.setState({ modalEliminar: true }) }}><FontAwesomeIcon icon={faTrashAlt} /></button>
                                                     {"   "}
-                                                    <button className="btn btn-primary" onClick={() => { this.seleccionarHabilidadTalento(talento); this.setState({ modalConsultarHabilidad: true }) }}><FontAwesomeIcon icon={faStar} /></button>
+                                                    <button className="btn btn-primary" onClick={() => {this.seleccionarHabilidadTalento(talento); this.modalInsertarHabilidad()  }}><FontAwesomeIcon icon={faStar} /></button>
                                                 </td>
                                             </tr>
                                         )
@@ -299,65 +299,15 @@ class Talentos extends React.Component {
                                     </ModalFooter>
                                 </Modal>
                                 {/* INICIO MODAL HABILIDADES CONSULTA */}
-                                <Modal isOpen={this.state_hab.modalInsertarHabilidad}>
+                               
+                                <Modal isOpen={this.state.modalInsertarHabilidad}>
                                     <ModalHeader style={{ display: 'block' }}>
-                                        <span style={{ float: 'right' }} onClick={() => this.modalConsultarHabilidad()}></span>
+                                        <span style={{ float: 'right' }} onClick={() => this.modalInsertarHabilidad()}>x</span>
                                     </ModalHeader>
                                     <ModalBody>
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Categoria</th>
-                                                <th scope="col">Area</th>
-                                                <th scope="col">Descripcion</th>
-
-                                            </tr>
-
-                                        </thead>
-                                        <tbody>
-                                            {this.state.data.map(habtalento => {
-                                                return (
-                                                    <tr>
-                                                        <td key="{talento.id_talento}">{habtalento.categoria}</td>
-                                                        <td key="{talento.identificacion}">{habtalento.area}</td>
-                                                        <td key="{talento.descripcion}">{habtalento.descripcion}</td>
-
-                                                        <td>
-                                                            <button className="btn btn-primary" onClick={() => { this.seleccionarTalento(habtalento); this.modalInsertar() }}><FontAwesomeIcon icon={faEdit} /></button>
-                                                            {"   "}
-                                                            <button className="btn btn-danger" onClick={() => { this.seleccionarTalento(habtalento); this.setState({ modalEliminar: true }) }}><FontAwesomeIcon icon={faTrashAlt} /></button>
-                                                            {"   "}
-                                                            <button className="btn btn-primary" onClick={() => { this.seleccionarHabilidadTalento(habtalento); this.setState({ modalInsertarHabilidad: true }) }}><FontAwesomeIcon icon={faStar} /></button>
-                                                        </td>
-                                                    </tr>
-                                                )
-                                            })}
-                                        </tbody>
-                                    </ModalBody>
-
-                                    <ModalFooter>
-                                        {this.state.tipoModal == 'insertar' ?
-                                            <button className="btn btn-success" onClick={() => this.peticionPost()}>
-                                                Insertar
-                                            </button> : <button className="btn btn-primary" onClick={() => this.peticionPut()}>
-                                                Actualizar
-                                            </button>
-                                        }
-                                        <button className="btn btn-danger" onClick={() => this.modalInsertarHabilidad()}>Cancelar</button>
-                                    </ModalFooter>
-                                </Modal>
-
-                                {/* FIN MODAL HABILIDADES CONSULTA */}
-
-
-
-                                <Modal isOpen={this.state_hab.modalInsertarHabilidad}>
-                                    <ModalHeader style={{ display: 'block' }}>
-                                        <span style={{ float: 'right' }} onClick={() => this.modalInsertarHabilidad()}></span>
-                                    </ModalHeader>
-                                    <ModalBody>
-                                        <div className="form-group">
+                                    <div className="form-group">
                                             <label htmlFor="id_categoria">Categoria</label>
-                                            <select className="form-control" type="text" name="id_categoria" id="id_categoria" onChange={this.handleChange} value={form_hab ? form_hab.id_categoria : ''} >
+                                            <select className="form-control" type="text" name="id_categoria" id="id_categoria" onChange={this.handleChange} value={form_hab ? form_hab.categoria : ''} >
                                                 <option value="1">Técnicas</option>
                                                 <option value="2">Comunicación</option>
                                                 <option value="3">Liderazgo y gestión</option>
@@ -369,7 +319,7 @@ class Talentos extends React.Component {
                                             </select>
                                             <br />
                                             <label htmlFor="nombre">Nombre</label>
-                                            <select className="form-control" type="text" name="id_categoria" id="id_categoria" onChange={this.handleChange} value={form_hab ? form_hab.id_area : ''} >
+                                            <select className="form-control" type="text" name="id_categoria" id="id_categoria" onChange={this.handleChange} value={form_hab ? form_hab.area : ''} >
                                                 <option value="1">Habilidades informáticas</option>
                                                 <option value="2">Habilidades técnicas específicas</option>
                                                 <option value="3">Comunicación oral</option>
@@ -393,15 +343,21 @@ class Talentos extends React.Component {
 
                                     <ModalFooter>
                                         {this.state.tipoModal == 'insertar' ?
-                                            <button className="btn btn-success" onClick={() => this.peticionPost()}>
+                                            <button className="btn btn-success" onClick={() => this.peticionPostHab()}>
                                                 Insertar
                                             </button> : <button className="btn btn-primary" onClick={() => this.peticionPut()}>
                                                 Actualizar
                                             </button>
                                         }
-                                        <button className="btn btn-danger" onClick={() => this.modalInsertarHabilidad()}>Cancelar</button>
+                                        <button className="btn btn-danger" onClick={() => this.modalInsertarHabilidadHabilidad()}>Cancelar</button>
                                     </ModalFooter>
                                 </Modal>
+
+                                {/* FIN MODAL HABILIDADES CONSULTA */}
+
+
+
+                             
 
 
                             </div>
