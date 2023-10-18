@@ -36,7 +36,12 @@ class Talentos extends React.Component {
             pais: '',
             correo: '',
             telefono: '',
-            valor_hora: ''
+            valor_hora: '',
+            id_habilidad: '',
+            id_talento: '',
+            categoria: '',
+            area: '',
+            descripcion: ''
         }
     }
 
@@ -97,14 +102,15 @@ class Talentos extends React.Component {
             }
         })
     }
-    //peticiones habilidades
+    //HABILIDADES
 
+    //MAPEO
 
     state_hab = {
         data_hab: [],
-        modalInsertarHabilidad: false,
+        modalConsultarHabilidad: false,
         // modalEliminar: false,
-        
+
         form_hab: {
 
             id_habilidad: '',
@@ -126,7 +132,7 @@ class Talentos extends React.Component {
     peticionGetHabilidades = () => {
         axios.get(urlgethabilidad).then(response => {
             this.setState({
-                data_hab: response.data_hab
+                data_hab: response.data
             });
         }).catch(error => {
             console.log(error.message);
@@ -135,8 +141,8 @@ class Talentos extends React.Component {
 
     peticionPostHab = async () => {
         delete this.state_hab.form_hab.id;
-        await axios.post(urlposthabilidad, this.state_hab.form_hab).then(response => {
-            this.modalInsertarHabilidad();
+        await axios.post(urlposthabilidad, this.state.form).then(response => {
+            this.modalConsultarHabilidad();
             this.peticionGetHabilidades();
         }).catch(error => {
             console.log(error.message);
@@ -144,19 +150,22 @@ class Talentos extends React.Component {
     }
 
 
+
+
+
     //funciones habilidades 
-    modalInsertarHabilidad = () => {
-        this.setState({ modalInsertarHabilidad: !this.state_hab.modalInsertarHabilidad });
+    modalConsultarHabilidad = () => {
+        this.setState({ modalConsultarHabilidad: !this.state.modalConsultarHabilidad });
     }
 
-    seleccionarHabilidadTalento = (talento) => {
+    seleccionarHabilidadTalento = (talentohab) => {
         this.setState({
             tipoModal: 'actualizar',
-            form_hab: {
-                id_talento: talento.id_talento,
-                categoria: talento.categoria,
-                area: talento.area,
-                descripcion: talento.descripcion
+            form: {
+                id_talento: talentohab.id_talento,
+                categoria: talentohab.categoria,
+                area: talentohab.area,
+                descripcion: talentohab.descripcion
 
 
             }
@@ -239,7 +248,7 @@ class Talentos extends React.Component {
                                                     {"   "}
                                                     <button className="btn btn-danger" onClick={() => { this.seleccionarTalento(talento); this.setState({ modalEliminar: true }) }}><FontAwesomeIcon icon={faTrashAlt} /></button>
                                                     {"   "}
-                                                    <button className="btn btn-primary" onClick={() => {this.seleccionarHabilidadTalento(talento); this.modalInsertarHabilidad()  }}><FontAwesomeIcon icon={faStar} /></button>
+                                                    <button className="btn btn-primary" onClick={() => { this.seleccionarHabilidadTalento(talento); this.modalConsultarHabilidad() }}><FontAwesomeIcon icon={faStar} /></button>
                                                 </td>
                                             </tr>
                                         )
@@ -299,46 +308,35 @@ class Talentos extends React.Component {
                                     </ModalFooter>
                                 </Modal>
                                 {/* INICIO MODAL HABILIDADES CONSULTA */}
-                               
-                                <Modal isOpen={this.state.modalInsertarHabilidad}>
+
+                                <Modal isOpen={this.state.modalConsultarHabilidad}>
                                     <ModalHeader style={{ display: 'block' }}>
-                                        <span style={{ float: 'right' }} onClick={() => this.modalInsertarHabilidad()}>x</span>
+                                        <span style={{ float: 'right' }} onClick={() => this.modalConsultarHabilidad()}></span>
                                     </ModalHeader>
                                     <ModalBody>
-                                    <div className="form-group">
-                                            <label htmlFor="id_categoria">Categoria</label>
-                                            <select className="form-control" type="text" name="id_categoria" id="id_categoria" onChange={this.handleChange} value={form_hab ? form_hab.categoria : ''} >
-                                                <option value="1">Técnicas</option>
-                                                <option value="2">Comunicación</option>
-                                                <option value="3">Liderazgo y gestión</option>
-                                                <option value="4">Resolución de problemas</option>
-                                                <option value="5">Interpesonales</option>
-                                                <option value="6">Comerciales y Financieras</option>
-                                                <option value="7">Autogestión</option>
-                                                <option value="8">Aprendizaje continuo</option>
-                                            </select>
-                                            <br />
-                                            <label htmlFor="nombre">Nombre</label>
-                                            <select className="form-control" type="text" name="id_categoria" id="id_categoria" onChange={this.handleChange} value={form_hab ? form_hab.area : ''} >
-                                                <option value="1">Habilidades informáticas</option>
-                                                <option value="2">Habilidades técnicas específicas</option>
-                                                <option value="3">Comunicación oral</option>
-                                                <option value="4">Comunicación escrita</option>
-                                                <option value="5">Habilidades de presentación</option>
-                                                <option value="6">Habilidades de liderazgo</option>
-                                                <option value="7">Gestión del tiempo</option>
-                                                <option value="8">Habilidades de delegación</option>
-                                            </select>
-                                            <br />
-                                            <label htmlFor="id_talento">Id Talento</label>
-                                            <input className="form-control" type="text" name="id_talento" id="id_talento" onChange={this.handleChange} value={form_hab ? form_hab.id_talento : ''} />
-                                            <br />
-                                            <br />
-                                            <label htmlFor="descripcion">Descripcion</label>
-                                            <input className="form-control" type="text" name="descripcion" id="descripcion" onChange={this.handleChange} value={form_hab ? form_hab.descripcion : ''} />
-                                            <br />
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">categoria</th>
+                                                <th scope="col">area</th>
+                                                <th scope="col">descripcion</th>
 
-                                        </div>
+
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            {this.state.data.map(talentohab => {
+                                                return (
+                                                    <tr>
+                                                        <td key="{talento.categoria}">{talentohab.categoria}</td>
+                                                        <td key="{talento.area}">{talentohab.area}</td>
+                                                        <td key="{talento.descripcion}">{talentohab.descripcion}</td>
+
+                                                    </tr>
+                                                )
+                                            })}
+                                        </tbody>
+
                                     </ModalBody>
 
                                     <ModalFooter>
@@ -349,7 +347,7 @@ class Talentos extends React.Component {
                                                 Actualizar
                                             </button>
                                         }
-                                        <button className="btn btn-danger" onClick={() => this.modalInsertarHabilidadHabilidad()}>Cancelar</button>
+                                        <button className="btn btn-danger" onClick={() => this.modalConsultarHabilidad()}>Cancelar</button>
                                     </ModalFooter>
                                 </Modal>
 
@@ -357,7 +355,7 @@ class Talentos extends React.Component {
 
 
 
-                             
+
 
 
                             </div>
