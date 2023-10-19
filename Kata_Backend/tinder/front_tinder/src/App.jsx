@@ -9,6 +9,7 @@ import {
 import Layout from './components/Layout';
 import Talentos from './views/talentos';
 import Empresas from './views/empresas';
+import Habilidades from './views/habilidades';
 import Home from './views/home';
 
 function App() {
@@ -30,6 +31,10 @@ function App() {
         {
           path: "empresas",
           element: <Empresas></Empresas>,
+        },
+        {
+          path: "habilidades",
+          element: <Habilidades></Habilidades>,
         },
       ],
     },

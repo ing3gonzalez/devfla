@@ -19,8 +19,8 @@ const urlpost = "https://tinder-rc1o.onrender.com/tinder/talento/crear";
 
 const urldelete = "https://tinder-rc1o.onrender.com/tinder/talento/eliminar/";
 
-const urlgethabilidad = "https://tinder-rc1o.onrender.com/tinder/talento/obtener";
-const urlposthabilidad = "https://tinder-rc1o.onrender.com/tinder/habilidad/obtenertalento/";
+const urlgethabilidad = "https://tinder-rc1o.onrender.com/tinder/habilidad/obtener";
+const urlposthabilidad = "https://tinder-rc1o.onrender.com/tinder/habilidad/crear";
 
 class Talentos extends React.Component {
 
@@ -30,6 +30,8 @@ class Talentos extends React.Component {
         modalEliminar: false,
         form: {
 
+            id_habilidad: '',
+            id_talento: '',
             identificacion: '',
             nombre: '',
             ciudad: '',
@@ -37,8 +39,6 @@ class Talentos extends React.Component {
             correo: '',
             telefono: '',
             valor_hora: '',
-            id_habilidad: '',
-            id_talento: '',
             categoria: '',
             area: '',
             descripcion: ''
@@ -46,7 +46,7 @@ class Talentos extends React.Component {
     }
 
     peticionGet = () => {
-        axios.get(urlget).then(response => {
+        axios.get(urlgethabilidad).then(response => {
             this.setState({
                 data: response.data
             });
@@ -91,6 +91,7 @@ class Talentos extends React.Component {
         this.setState({
             tipoModal: 'actualizar',
             form: {
+                id_habilidad: talento.id_habilidad,
                 id_talento: talento.id_talento,
                 identificacion: talento.identificacion,
                 nombre: talento.nombre,
@@ -98,81 +99,16 @@ class Talentos extends React.Component {
                 pais: talento.pais,
                 correo: talento.correo,
                 telefono: talento.telefono,
-                valor_hora: talento.valor_hora
+                valor_hora: talento.valor_hora,
+                categoria: talento.categoria,
+                area: talento.area,
+                descripcion: talento.descripcion
             }
         })
     }
     //HABILIDADES
 
-    //MAPEO
-
-    state_hab = {
-        data_hab: [],
-        modalConsultarHabilidad: false,
-        // modalEliminar: false,
-
-        form_hab: {
-
-            id_habilidad: '',
-            id_talento: '',
-            identificacion: '',
-            nombre: '',
-            ciudad: '',
-            pais: '',
-            correo: '',
-            telefono: '',
-            valor_hora: '',
-            categoria: '',
-            area: '',
-            descripcion: ''
-
-        }
-    }
-
-    peticionGetHabilidades = () => {
-        axios.get(urlgethabilidad).then(response => {
-            this.setState({
-                data: response.data
-            });
-        }).catch(error => {
-            console.log(error.message);
-        })
-    }
-
-    peticionPostHab = async () => {
-        delete this.state_hab.form_hab.id;
-        await axios.post(urlposthabilidad, this.state.form).then(response => {
-            this.modalConsultarHabilidad();
-            this.peticionGetHabilidades();
-        }).catch(error => {
-            console.log(error.message);
-        })
-    }
-
-
-
-
-
-    //funciones habilidades 
-    modalConsultarHabilidad = () => {
-        this.setState({ modalConsultarHabilidad: !this.state.modalConsultarHabilidad });
-    }
-
-    seleccionarHabilidadTalento = (talento) => {
-        this.setState({
-            tipoModal: 'actualizar',
-            form: {
-                id_talento: talento.id_talento,
-                categoria: talento.categoria,
-                area: talento.area,
-                descripcion: talento.descripcion
-
-
-            }
-        })
-    }
-
-
+    
 
     handleChange = async e => {
         e.persist();
@@ -180,14 +116,10 @@ class Talentos extends React.Component {
             form: {
                 ...this.state.form,
                 [e.target.name]: e.target.value
-            },
-            form_hab: {
-                ...this.state_hab.form_hab,
-                [e.target.name]: e.target.value
             }
         });
         console.log(this.state.form);
-        console.log(this.state_hab.form_hab);
+    
     }
 
     componentDidMount() {
@@ -196,7 +128,7 @@ class Talentos extends React.Component {
 
     render() {
         const { form } = this.state;
-        const { form_hab } = this.state_hab;
+       
 
         return (
 
@@ -214,19 +146,24 @@ class Talentos extends React.Component {
                         <div className="row">
 
                             <div className="col-md-6">
-                                <br /><br /><br />
+                                {/* <br /><br /><br />
                                 <button className="btn btn-success" striped bordered hover onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}>Agregar Talento</button>
-                                <br /><br />
+                                <br /><br /> */}
                                 <thead>
                                     <tr>
+                                        <th scope="col">Id Habilidad</th>
                                         <th scope="col">Id Talento</th>
                                         <th scope="col">Identificacion</th>
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Ciudad</th>
                                         <th scope="col">Pais</th>
                                         <th scope="col">Correo</th>
-                                        <th scope="col">Teléfono</th>
+                                        <th scope="col">Telefono</th>
                                         <th scope="col">Valor Hora</th>
+                                        <th scope="col">Categoria</th>
+                                        <th scope="col">Area</th>
+                                        <th scope="col">Descripcion</th>
+
 
                                     </tr>
 
@@ -235,6 +172,7 @@ class Talentos extends React.Component {
                                     {this.state.data.map(talento => {
                                         return (
                                             <tr>
+                                                <td key="{talento.id_talento}">{talento.id_habilidad}</td>
                                                 <td key="{talento.id_talento}">{talento.id_talento}</td>
                                                 <td key="{talento.identificacion}">{talento.identificacion}</td>
                                                 <td key="{talento.nombre}">{talento.nombre}</td>
@@ -243,6 +181,9 @@ class Talentos extends React.Component {
                                                 <td key="{talento.correo}">{talento.correo}</td>
                                                 <td key="{talento.telefono}">{talento.telefono}</td>
                                                 <td key="{talento.valor_hora}">{talento.valor_hora}</td>
+                                                <td key="{talento.categoria}">{talento.categoria}</td>
+                                                <td key="{talento.area}">{talento.area}</td>
+                                                <td key="{talento.descripcion}">{talento.descripcion}</td>
                                                 <td>
                                                     <button className="btn btn-primary" onClick={() => { this.seleccionarTalento(talento); this.modalInsertar() }}><FontAwesomeIcon icon={faEdit} /></button>
                                                     {"   "}
